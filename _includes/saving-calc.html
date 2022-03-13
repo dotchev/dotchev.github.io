@@ -1,0 +1,103 @@
+<style>
+  form {
+    /* Center the form on the page */
+    margin: 0 auto;
+    width: 400px;
+    /* Form outline */
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+  }
+
+  form ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  form li+li {
+    margin-top: 1em;
+  }
+
+  form label {
+    /* Uniform size & alignment */
+    display: inline-block;
+    width: 150px;
+    text-align: right;
+  }
+
+  input {
+    /* To make sure that all text fields have the same font settings
+       By default, textareas have a monospace font */
+    font: 1em sans-serif;
+
+    /* Uniform text field size */
+    width: 100px;
+    box-sizing: border-box;
+
+    /* Match form field borders */
+    border: 1px solid #999;
+  }
+
+  input:focus {
+    /* Additional highlight for focused elements */
+    border-color: #000;
+  }
+
+  input:invalid {
+    /* Red highlight for invalid elements */
+    border-color: #C00;
+  }
+</style>
+
+<form>
+  <ul>
+    <li>
+      <label for="saving">Income saving:</label>
+      <input type="number" id="saving" min="1" max="100" step="0.1" value="15" required> %
+    </li>
+    <li>
+      <label for="promotion">Income increase:</label>
+      <input type="number" id="promotion" min="0" step="0.1" value="3" required> %
+    </li>
+    <li>
+      <label for="return">Investment return:</label>
+      <input type="number" id="return" min="1" step="0.1" value="13" required> %
+    </li>
+    <li>
+      <label for="years">Period:</label>
+      <input type="number" id="years" min="1" step="1" value="18" required> years
+    </li>
+    <li>
+      <label for="coverage">Return / income:</label>
+      <input type="number" id="coverage" disabled> %
+    </li>
+  </ul>
+</form>
+<p></p>
+
+<script>
+  const saving = document.getElementById('saving');
+  const promotion = document.getElementById('promotion');
+  const gain = document.getElementById('return');
+  const years = document.getElementById('years');
+  const coverage = document.getElementById('coverage');
+
+  saving.oninput = update;
+  promotion.oninput = update;
+  gain.oninput = update;
+  years.oninput = update;
+  update();
+
+  function update() {
+    const s = saving.value / 100
+    const r = 1 + gain.value / 100
+    const p = 1 + promotion.value / 100
+    const n = +years.value
+
+    const v = p == r ? n * s * (r - 1) :
+      s * (r - 1) * ((r / p) ** n - 1) / (1 - p / r)
+    console.log(`s=${s} p=${p} r=${r} n=${n} => ${v}`)
+    coverage.value = isFinite(v) ? Math.round(v * 100) : ''
+  }
+</script>
