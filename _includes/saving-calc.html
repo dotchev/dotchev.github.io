@@ -2,11 +2,12 @@
   form {
     /* Center the form on the page */
     margin: 0 auto;
-    width: 400px;
+    width: 330px;
     /* Form outline */
     padding: 1em;
     border: 1px solid #CCC;
     border-radius: 1em;
+    background-color: #ff01;
   }
 
   form ul {
@@ -30,6 +31,7 @@
     /* To make sure that all text fields have the same font settings
        By default, textareas have a monospace font */
     font: 1em sans-serif;
+    text-align: right;
 
     /* Uniform text field size */
     width: 100px;
@@ -47,6 +49,10 @@
   input:invalid {
     /* Red highlight for invalid elements */
     border-color: #C00;
+  }
+
+  input:read-only {
+    background-color: #eee;
   }
 </style>
 
@@ -70,7 +76,7 @@
     </li>
     <li>
       <label for="coverage">Return / income:</label>
-      <input type="number" id="coverage" disabled> %
+      <input type="number" id="coverage" readonly> %
     </li>
   </ul>
 </form>
