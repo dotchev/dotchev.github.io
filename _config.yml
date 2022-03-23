@@ -23,7 +23,7 @@ email: dotchev at google mail
 description: >- # this means to ignore newlines until "baseurl:"
   A blog by Petar Dochev
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://dotchev.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: PDotchev
 github_username:  dotchev
 google_analytics: G-ZT1S9YC9WD
@@ -32,6 +32,9 @@ google_analytics: G-ZT1S9YC9WD
 theme: minima
 plugins:
   - jekyll-feed
+
+disqus:
+  shortname: dotchev
 
 # Exclude from processing.
 # The following items will not be processed, by default.
